@@ -9,7 +9,7 @@ This repo provides the source code for the CVPR2023 paper:
 > <sup>1</sup> National University of Singapore, <sup>2</sup> Johns Hopkins University
 
 ## Update
-The v0.1 basic version is online March 27th, 2023. Including MATLAB implementation of the algorithm, data(SDF) preprocess script, and visualization tools.
+**March 27th, 2023** - V0.1 basic version is online, including MATLAB implementation of the algorithm, data(SDF) preprocess script, and visualization tools.
 Python implementation is planned in the coming updates.
 
 ## Abstraction
