@@ -156,7 +156,7 @@ while numDivision < para.maxDivision
         occ_temp{i} = occ_idx(sdf(occ_idx) < grid.truncation);
         
         if (num_idx(2) / (num_idx(1) + num_idx(2))) > 0.25 ... 
-                || num_idx(3) < para.minArea
+                || num_idx(1) < para.minArea %3
             del_idx(i) = 1;
             sdf(roi(i).PixelIdxList) = nan;
             if para.verbose == 1
