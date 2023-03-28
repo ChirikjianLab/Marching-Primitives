@@ -1,3 +1,0 @@
-python3 mesh2sdf_convertion.py /home/saintsbury/Downloads/experiment/tv_stand_0298.off --normalize --grid_resolution 100
-
-stl, off, ply, collada, json, dict, glb, dict64, msgpack, obj
