@@ -1,7 +1,7 @@
 # Marching-Primitives: Shape Abstraction from Signed Distance Function
 Project|Paper|Supplementary|[Arxiv](https://arxiv.org/abs/2303.13190)|[3D-Demos](/MATLAB/examples)|[Data](/MATLAB/data)
 
-<img src="/MATLAB/examples/example.jpg" alt="example" width="600"/>
+<img src="/examples/example.jpg" alt="example" width="600"/>
 
 This repo provides the source code for the CVPR2023 paper:
 > [**Marching-Primitives: Shape Abstraction from Signed Distance Function**](https://arxiv.org/abs/2303.13190 "ArXiv version of the paper.")  
