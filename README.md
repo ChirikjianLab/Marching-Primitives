@@ -23,7 +23,7 @@ The source code of the algorithm is in `/MATLAB/src/MPS.m`
 x = MPS(sdf, grid)
 ```
 The algorithm depends on the Image Processing Toolbox of MATLAB.
-The algorithm requires a Signed Distance Function discretized on a voxel grid as input. More specifically, for a grid of size $x,y,z:M*N*W$, `grid.size = [M, N, W]` is the size of the voxel grid; `grid.range = [x_min, x_max, y_min, y_max, z_min, z_max]` stores the range of the voxel grid, and `sdf` is a 1-D array flattened from the 3-D array storing the signed distance of points in the voxel grid. 
+The algorithm requires a Signed Distance Function discretized on a voxel grid as input. More specifically, for a grid of size $(x,y,z):M/times N/times W$, `grid.size = [M, N, W]` is the size of the voxel grid; `grid.range = [x_min, x_max, y_min, y_max, z_min, z_max]` stores the range of the voxel grid, and `sdf` is a 1-D array flattened from the 3-D array storing the signed distance of points in the voxel grid. 
 
 
 The output of the function is a 2D array of size $K*11$, where each row stores the parameter of a superquadric $[\epsilon_1, \epsilon_2, a_x, a_y, a_z, euler_z, euler_y, euler_x, t_x, t_y, t_z]$.
