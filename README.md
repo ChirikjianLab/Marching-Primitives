@@ -1,5 +1,5 @@
 # Marching-Primitives: Shape Abstraction from Signed Distance Function
-Project|Paper|Supplementary|[Arxiv](https://arxiv.org/abs/2303.13190)|[3D-Demos](/MATLAB/examples)|[Data](/MATLAB/data)
+Project|Paper|Supplementary|[Arxiv](https://arxiv.org/abs/2303.13190)|[3D-Demos](/examples)|[Data](/MATLAB/data)
 
 <img src="/examples/example.jpg" alt="example" width="600"/>
 
