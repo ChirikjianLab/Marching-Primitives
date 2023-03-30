@@ -41,7 +41,7 @@ toc
 %% triangularization and compression
 [mesh_original] = meshSuperquadrics(x, 'Arclength', voxelGrid.visualizeArclength);
 % compression
-mesh = reducepatch(mesh_original.f, mesh_original.v, 0.05); %0.05-2
+mesh = reducepatch(mesh_original.f, mesh_original.v, 0.2); %0.05-2
 stl = triangulation(mesh.faces, mesh.vertices);
 
 ifsave = true;
