@@ -24,7 +24,7 @@ voxelGrid.z = linspace(voxelGrid.range(5), voxelGrid.range(6), voxelGrid.size(3)
 [x, y, z] = ndgrid(voxelGrid.x, voxelGrid.y, voxelGrid.z);
 voxelGrid.points = reshape(cat(4, x, y, z), [], 3)';
 voxelGrid.interval = (voxelGrid.range(2) - voxelGrid.range(1)) / (voxelGrid.size(1) -1);
-voxelGrid.truncation = 1.1 * voxelGrid.interval; %1.1 - 1.5
+voxelGrid.truncation = 1.2 * voxelGrid.interval; %1.1 - 1.5
 voxelGrid.disp_range = [-inf, voxelGrid.truncation];
 voxelGrid.visualizeArclength = 0.01 * sqrt(voxelGrid.range(2) - voxelGrid.range(1));
 clearvars x y z
@@ -40,7 +40,7 @@ toc
 %% triangularization and compression
 [mesh_original] = meshSuperquadrics(x, 'Arclength', voxelGrid.visualizeArclength);
 % compression
-mesh = reducepatch(mesh_original.f, mesh_original.v, 0.2); %0.05-2
+mesh = reducepatch(mesh_original.f, mesh_original.v, 0.1); %0.05-2
 stl = triangulation(mesh.faces, mesh.vertices);
 
 ifsave = true;
