@@ -51,7 +51,7 @@ def main(argv):
     mesh = trimesh.load(os.path.join(dir_name, mesh_file), force='mesh')
     print('Original mesh loaded from ' + args.path_to_data + '.')
 
-    mesh_scale = 0.8
+    mesh_scale = 0.8 #0.8
     size = args.grid_resolution
     level = args.level / size
 

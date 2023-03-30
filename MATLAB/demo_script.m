@@ -1,4 +1,3 @@
-% generate trimesh representation for save
 %% Loading file paths
 clear
 close all
