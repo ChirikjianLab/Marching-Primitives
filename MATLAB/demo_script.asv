@@ -7,7 +7,7 @@ addpath('../mesh2tri/')
 
 [file,path] = uigetfile({'*.csv'},...
     'Please select the .csv file... containing SDF of an object', ...
-    '../', 'MultiSelect','off');
+    '..', 'MultiSelect','off');
 if isequal(file, 0)
     error('No file selected.');
 end
@@ -80,7 +80,7 @@ material dull
 axis(voxelGrid.range)
 grid off
 axis off
-title('ground truth mesh from marching cubes')
+title('ground truth mesh from marching cube')
 
 figure(2)
 trisurf(mesh.faces,mesh.vertices(:,1),mesh.vertices(:,2),mesh.vertices(:,3), ...

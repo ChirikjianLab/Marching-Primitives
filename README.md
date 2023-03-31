@@ -42,7 +42,7 @@ python3 mesh2sdf_convert.py $location of the mesh file$ --normalize --grid_resol
 where the mesh and sdf will be normalized within $[-1, 1]$ if you add `–-normalized`; and `--grid_resolution` specifies the resolution of the sdf (default $100$).
 The script accepts mesh forms: .stl, .off, .ply, .collada, .json, .dict, .glb, .dict64, .msgpack, .obj.
 The SDF (*.csv) and preprocessed watertight mesh (*_watertight.stl) will be saved at the same folder of the input mesh.
-A few .obj meshes from ShapeNets are prepared in the [data](/MATLAB/data) at `/MATALB/data`.
+A few meshes from ShapeNet/ModelNet are prepared in the [data](/MATLAB/data) at `/MATALB/data`.
 
 ### Demo script
 After obtaining the SDF file, run the [demo script](/MATLAB/demo_script.m) at `/MATLAB/demo_script.m`.
