@@ -16,8 +16,8 @@ def main(argv):
     )
 
     parser.add_argument(
-        '--grid_resolution', type=int, default=64,
-        help='Set the resolution of the voxel grids in the order of x, y, z, e.g. 64 means 64^3.'
+        '--grid_resolution', type=int, default=100,
+        help='Set the resolution of the voxel grids in the order of x, y, z, e.g. 64 means 100^3.'
     )
 
     parser.add_argument(   
