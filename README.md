@@ -8,6 +8,18 @@ This repo provides the source code for the CVPR2023 paper:
 > Weixiao Liu<sup>1,2</sup>, Yuwei Wu<sup>2</sup>, [Sipu Ruan](https://ruansp.github.io/)<sup>2</sup>, [Gregory S. Chirikjian](https://cde.nus.edu.sg/me/staff/chirikjian-gregory-s/)<sup>2</sup>  
 > <sup>1</sup> National University of Singapore, <sup>2</sup> Johns Hopkins University
 
+## Citation
+If you find this repo useful, please give us a star and cite:
+```
+@Inproceedings{Liu2023CVPR,
+     title = {Marching-Primitives: Shape Abstraction from Signed Distance Function},
+     author = {Liu, Weixiao and Wu, Yuwei and Ruan, Sipu and Chirikjian, Gregory},
+     booktitle = {Proceedings IEEE Conf. on Computer Vision and Pattern Recognition (CVPR)},
+     year = {2023}
+}
+```
+Thanks for your interest!
+
 ## Update
  - **March 27th, 2023** - V0.1 basic version is online, including MATLAB implementation of the algorithm, data(SDF) preprocess script, and visualization tools.
 Python implementation is planned in the coming updates.
@@ -51,13 +63,3 @@ The script conducts the shape abstraction and visualize the results.
 The recovered superquadric representation is saved as `*.mat` at the same location of the input SDF.
 For visualization, mesh file of the superquadric representation is also saved as `*_sq.stl`.
 
-## Citation
-If you find this repo useful, please cite:
-```
-@Inproceedings{Liu2023CVPR,
-     title = {Marching-Primitives: Shape Abstraction from Signed Distance Function},
-     author = {Liu, Weixiao and Wu, Yuwei and Ruan, Sipu and Chirikjian, Gregory},
-     booktitle = {Proceedings IEEE Conf. on Computer Vision and Pattern Recognition (CVPR)},
-     year = {2023}
-}
-```
