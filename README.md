@@ -51,7 +51,7 @@ The recovered superquadric representation is saved as `*.mat` at the same locati
 For visualization, mesh file of the superquadric representation is also saved as `*_sq.stl`.
 
 ## Citation
-If you find this repo useful, please cite:
+If you find this repo useful, please give us a star and cite:
 ```
 @Inproceedings{Liu2023CVPR,
      title = {Marching-Primitives: Shape Abstraction from Signed Distance Function},
@@ -60,3 +60,4 @@ If you find this repo useful, please cite:
      year = {2023}
 }
 ```
+Thanks for your interest!
