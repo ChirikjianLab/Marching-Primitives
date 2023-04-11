@@ -34,7 +34,7 @@ sdf = min(max(sdf, -voxelGrid.truncation), voxelGrid.truncation);
 
 %% marching-primitives
 tic
-[x] = MPS(sdf, voxelGrid, 'minArea', 5);
+[x] = MPS(sdf, voxelGrid);
 toc
 
 %% triangularization and compression
