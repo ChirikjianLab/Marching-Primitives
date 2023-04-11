@@ -25,7 +25,7 @@ while numDivision < para.maxDivision
     end
     % set the connection region 
     connTreshold = connRatio(connPointer) * min(sdf);
-    if connTreshold > -grid.truncation * 5e-1
+    if connTreshold > -grid.truncation * 3e-1
         break
     end
     % preliminary segementation via connectivity of regions
