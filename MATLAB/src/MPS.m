@@ -16,7 +16,6 @@ connRatio = [1, dratio, (dratio)^2, (dratio)^3, (dratio)^4, ...
              (dratio)^5, (dratio)^6, (dratio)^7, (dratio)^8];
 connPointer = 1;
 num_region = 1;
-occ = {};
 
 while numDivision < para.maxDivision 
 % terminate when the maximum layer of division reached 
@@ -26,7 +25,7 @@ while numDivision < para.maxDivision
     end
     % set the connection region 
     connTreshold = connRatio(connPointer) * min(sdf);
-    if connTreshold > -grid.truncation * 1e-2
+    if connTreshold > -grid.truncation * 5e-1
         break
     end
     % preliminary segementation via connectivity of regions
@@ -56,11 +55,12 @@ while numDivision < para.maxDivision
 % 2-Probabilistic Primitive Marching---------------------------------------  
     % initialize superquadric storage
     x_temp = zeros(num_region, 11);
-    del_idx = zeros(num_region, 1);
-    
-    occ_temp = cell(num_region, 1);
+    del_idx = zeros(num_region, 1);    
+    occ_idx_in = cell(num_region, 1);
+    num_idx = zeros(num_region, 3);
     
     for i = 1 : num_region
+        occ_idx = [];
         % padding the bounding box to extend the region of interest
         % also update the bounding box info accordingly
         idx = ceil(roi(i).BoundingBox);
@@ -96,9 +96,7 @@ while numDivision < para.maxDivision
             k = dsearchn(grid.points(:, roi(i).PixelIdxList)', ...
                          grid.points(:, centroid_flatten)');
             roi(i).Centroid = grid.points(:, roi(i).PixelIdxList(k));
-        end                           
-          
-        % pre
+        end                                    
         
         valid = zeros(1 : 6);
         while ~all(valid)
@@ -111,7 +109,7 @@ while numDivision < para.maxDivision
                 0, 0, 0, roi(i).Centroid'];
             
             % for each subdivision find the optimal superquadric representation
-            [x_temp(i, :), occ_idx, valid, num_idx] = fitSuperquadricTSDF( ...
+            [x_temp(i, :), occ_idx, valid, num_idx(i, :)] = fitSuperquadricTSDF( ...
                 sdf(roi(i).idx), ...
                 x_init, ...
                 grid.truncation, ...
@@ -151,32 +149,31 @@ while numDivision < para.maxDivision
                     idx(3), idx(6), idx(3), idx(6)],...
                     grid);                
             end
-        end
-        
-        % evaluate fitting quality
-        occ_idx_in = occ_idx(sdf(occ_idx) <= 0);       
-        occ_temp{i} = occ_idx(sdf(occ_idx) < grid.truncation);
-        
-        if (num_idx(2) / (num_idx(1) + num_idx(2))) > 0.3 ... 
-                || num_idx(1) < para.minArea || num_idx(3) <= 1 %1
+        end              
+        occ_idx_in{i} = occ_idx(sdf(occ_idx) <= 0);       
+    end
+    for i = 1 : num_region
+        % evaluate fitting quality            
+        if (num_idx(i, 2) / (num_idx(i, 1) + num_idx(i, 2))) > 0.3 ... 
+                || num_idx(i, 1) < para.minArea || num_idx(i, 3) <= 1 %1
             del_idx(i) = 1;
             sdf(roi(i).PixelIdxList) = nan;
             if para.verbose == 1
                 disp(['region ', num2str(i), '/', num2str(num_region), ...
                     ' outPrecentage: ',...
-                    num2str(num_idx(2) / (num_idx(1) + num_idx(2))), ...
+                    num2str(num_idx(i, 2) / (num_idx(i, 1) + num_idx(i, 2))), ...
                     ' inNumber: ', ...
-                    num2str(num_idx(3)), ...
+                    num2str(num_idx(i, 3)), ...
                     ' ...REJECTED'])
             end
         else
-            sdf(occ_idx_in) = nan;
+            sdf(occ_idx_in{i}) = nan;
             if para.verbose == 1
                 disp(['region ', num2str(i), '/', num2str(num_region), ...
                     ' outPercentage: ',...
-                    num2str(num_idx(2) / (num_idx(1) + num_idx(2))), ...
+                    num2str(num_idx(i, 2) / (num_idx(i, 1) + num_idx(i, 2))), ...
                     ' inNumber: ', ...
-                    num2str(num_idx(3)), ...
+                    num2str(num_idx(i, 3)), ...
                     '...ACCEPTED'])
             end
         end
@@ -184,11 +181,7 @@ while numDivision < para.maxDivision
 
     x_temp = x_temp(del_idx == 0, :);
     x(end + 1 : end + size(x_temp, 1), :) = x_temp;
-    numDivision = numDivision + 1;
-    
-    occ_temp = occ_temp(del_idx == 0, :);
-    occ(end + 1 : end + size(occ_temp, 1), :) = occ_temp;
-    
+    numDivision = numDivision + 1;         
 end
 end
 
@@ -199,18 +192,18 @@ function [para] = parseInputArgs(grid, varargin)
     defaults = struct(...
         'verbose', true, ...
         'paddingSize', ...
-        ceil(15 * grid.truncation / grid.interval),... 
+        ceil(12 * grid.truncation / grid.interval),... 
         'minArea', 5, ...
         'maxDivision', 50, ...
-        'scaleInitRatio', 0.1, ... %0.1
-        'nanRange', 1.5 * grid.interval, ...
+        'scaleInitRatio', 0.1, ... 
+        'nanRange', 0.5 * grid.interval, ...
         'w', 0.99, ...
         'tolerance', 1e-6, ...
         'relative_tolerance', 1e-4, ...
         'switch_tolerance', 1e-1, ...
         'maxSwitch', uint8(2), ...
         'iter_min', uint8(2), ...
-        'maxOptiIter', 3, ... 
+        'maxOptiIter', 2, ... 
         'maxIter', 15, ...
         'activeMultiplier', 3); 
 
@@ -496,6 +489,13 @@ valid(4 : 6) = max(checkPoints) <= t_ub + 1 * truncation;
         R(3,1,:) = -st(:,2);
         R(3,2,:) = st(:,3).*ct(:,2);
         R(3,3,:) = ct(:,3).*ct(:,2);                   
+    end
+    function [rotm] = rotz(x)
+        x = x / 180 * pi;
+        rotm = [cos(x), -sin(x), 0;
+            sin(x), cos(x), 0;
+            0, 0, 1];
+        
     end
 %--------------------------------------------------------------------------
     function [weight] = inlierWeight(...
