@@ -44,7 +44,7 @@ The output of the function is a 2D array of size $K*11$, where each row stores t
 ### Preparing SDF from meshes
 If you do not have SDF files but want to test the algorithm, we have a simple script [mesh2sdf_preparation](/mesh2sdf_preparation) to generate SDF from meshes. The script is based on this [package](https://github.com/wang-ps/mesh2sdf).
 The mesh file will be first transformed to be watertight so that a valid SDF can be extracted.
-To run the script, first run
+To run the script, first install dependency
 ```
 pip install mesh2sdf
 ```
