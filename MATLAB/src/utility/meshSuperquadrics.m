@@ -27,7 +27,10 @@ f_num = zeros(n, 1);
 for i = 1 : n
     [x_mesh, y_mesh, z_mesh] = singleMeshSuperquadrics(x(i, :), ...
         'Arclength', arclength, 'Taper', taper);
-    [mesh{i}.f, mesh{i}.v] = mesh2tri(x_mesh, y_mesh, z_mesh,'b'); % f b x
+    [mesh{i}.f, mesh{i}.v] = mesh2tri(x_mesh, y_mesh, z_mesh,'f'); % f b x
+    s = size(mesh{i}.f);
+    idx = cat(2, s(1) / 8: 3 * s(1) / 8, 5 * s(1) / 8: 7 * s(1) / 8);
+    mesh{i}.f = mesh{i}.f(idx, :);
     v_num(i) = size(mesh{i}.v, 1);
     f_num(i) = size(mesh{i}.f, 1);
     if i > 1
