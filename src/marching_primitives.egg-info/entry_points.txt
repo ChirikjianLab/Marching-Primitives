@@ -1,0 +1,2 @@
+[console_scripts]
+marching-primitives = marching_primitives.cli:main

@@ -1,3 +1,20 @@
+Metadata-Version: 2.4
+Name: marching-primitives
+Version: 0.1.0
+Summary: Shape Abstraction from Signed Distance Function using Marching Primitives
+License: MIT
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: matplotlib
+Provides-Extra: mesh
+Requires-Dist: pymeshlab; extra == "mesh"
+Provides-Extra: open3d
+Requires-Dist: open3d; extra == "open3d"
+Dynamic: license-file
+
 # Marching-Primitives: Shape Abstraction from Signed Distance Function
 Project|Paper|Supplementary|[Arxiv](https://arxiv.org/abs/2303.13190)|[3D-Demos](/examples)|[Data](/MATLAB/data)
 
@@ -77,6 +94,9 @@ A few meshes from ShapeNet/ModelNet are prepared in the [data](/data).
 ```bash
 # Install the marching-primitives package (from repo root)
 pip install -e .
+
+# Install additional dependencies for mesh conversion scripts
+pip install mesh2sdf trimesh
 
 # Optional: for comparison and advanced visualization
 pip install scipy scikit-image open3d

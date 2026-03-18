@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "marching-primitives"
+version = "0.1.0"
+description = "Shape Abstraction from Signed Distance Function using Marching Primitives"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+dependencies = [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "scipy",
+    "scikit-image",
+    "open3d",
+]
+
+[project.optional-dependencies]
+mesh = ["pymeshlab"]
+open3d = ["open3d"]
+
+[project.scripts]
+marching-primitives = "marching_primitives.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

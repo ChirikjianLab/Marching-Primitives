@@ -1,0 +1,9 @@
+numpy
+scipy
+matplotlib
+
+[mesh]
+pymeshlab
+
+[open3d]
+open3d
